@@ -1,0 +1,12 @@
+매번 라이브러리를 메이븐 저장소에서 일일이 검색해서 복사 붙여넣기하는 것은 너무 
+번거롭다.
+따라서 pom.xml의 밑에 Dependencies의 Add를 눌러서 추가할 수 있다 .
+
+만약 라이브러리 목록이 나오지 않는다면 이클립스 메뉴 Window > Show View > Other
+> Maven > Maven Repositories > Ok 클릭 > 이클립스 가장 오른쪽 메뉴탭에 Maven 표시가 뜸
+> Global Repositories 우클릭 > Rebuild Index > 이클립스 작업 완료(3시간걸림)
+
+여기서 검색할 수 있다. tomcat 검색 > 여러가지 라이브러리에서 필요로 하는 라이브러리를
+누르고 버전을 선택한다. > Ok 클릭 
+
+이렇게하면 라이브러리를 이클립스에서 검색할 수 있다.

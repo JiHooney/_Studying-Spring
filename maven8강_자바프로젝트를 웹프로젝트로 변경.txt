@@ -1,0 +1,23 @@
+pom.xml에서 설정을 변경하면 war파일로 변경할 수 있다.
+pom.xml에서 
+<packaging>war</packagin> 으로 바꿔주고 저장하고
+프로젝트 우클릭으로 maven update를 해주면
+왼쪽 디렉터리 구조가 웹개발에 유용한 디렉터리 구조로 바뀌어진다.
+
+이때 pom.xml에 에러가 나는데 web.xml을 만들어달라는 에러가 난다.
+
+webapp 디렉터리에서 WEB-INF 디렉터리 생성 >
+톰캣 설치된 곳에서 apache-tomcat-9.0.19\webapps\ROOT\WEB-INF\web.xml 복사해서 
+붙여넣기
+
+이렇게 하면 pom.xml에 에러가 사라진다.
+
+이제 javaprj\src\main\webapp에서 index.html 파일을 만들고
+
+<body>
+	<h1>Hello Maven!</h1>
+</body>
+
+내용을 적어주고 아파치톰캣을 웹서버로 선택해준다.
+Run On Server > Select the server type에서 Apache 선택 > 톰캣 최신버전 선택 >
+Next > Browse > ~\apache-tomcat-9.0.19 디렉터리 선택 > Finish

@@ -1,0 +1,45 @@
+먼저 이클립스에서 메이븐 프로젝트 생성 > Create a simple project(skip archetype selection)
+> 
+Group Id: com.newlecture
+Artifact Id: examlib	
+> Finish
+
+pom.xml에서 JDK버전 1.8로 설정 > maven update
+
+
+src/main/java 에 클래스 파일 추가  > 
+패키지명은 com.newlecture.examlib.entity
+클래스명은 Exam
+
+private int kor;
+private int eng;
+private int math;
+
+기본생성자 추가, getter, setter 추가, 국어수학영어 점수 더해주는 함수,
+평균구하는 함수
+
+
+
+
+examlib 프로젝트 우클릭 > export > java > JAR file > 이를 로컬 메이븐 레파지토리에 추가하면
+사용할 수 있다.
+
+이렇게 하지말고
+examlib우클릭 > Run As > 메이븐단계에서 Maven Install 클릭하면 유저의 로컬 메이븐 레파지토리에
+자동적으로 빌드해서 옮겨준다.
+
+
+다시 javaprj에서 pom.xml 탭의 dependencies에서 add로 추가할 수 있다.
+먼저 이클립스의 Maven Repositories에서 Local Repository 우클릭 > Rebuild Index클릭 >
+위에서 만든 examlib라이브러리가 생긴다. 이제
+Dependencies에서 examlib검색해서 Ok눌러서 추가하기
+
+
+
+javaprj의 App.java에서 examlib에서의 메서드를 사용해본다.
+Exam exam = new Exam(10, 20, 30);
+System.out.println( exam.total() );
+
+
+만약에 다른 사람과 같이 사용해서 중앙 메이븐 저장소에 올리고 싶으면 deploy를 해야하고
+maven 계정이 필요하다.
