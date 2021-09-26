@@ -1,0 +1,24 @@
+###build lifecycle
+
+메이븐을 이용해서 compile, test, package 등을 이용할 수 있다.
+이러한 것들을 단계(phases)라고 한다.
+
+여러가지 단계가 있다.
+중요한 단계는 compile, test, package, install, deploy등이 있다.
+만약 test했다고 하면 앞의 단계들은 모두 저절로 실행되고 test까지 되는 것이다.
+
+또한 packaging을 jar파일 말고 war파일로 바꾸고 싶다면 pom.xml에서 수정할 수 있다.
+
+pom.xml은 우리가 만든 메이븐 프로젝트를 구성하고 설정하는 값들이 적혀있는 파일이다.
+따라서 pom.xml을 수정하면 그에 맞게 프로젝트도 달라진다.
+
+만약 jar파일을 만든다고하면 기본적으로 pom.xml에 설정된다.
+process-resources, compile, process-test-resources, test-compile, test, package 등이 
+기본적으로 설정되어있다. 이때 이러한 단계를 실행할 때 사용되는 프로그램이 
+Plug-in이다. 따라서 위에서 나열한 단계에서는 이러한 플러그인이 설정된 것이다.
+사용자가 추가적인 단계를 설정하려면 pom.xml에서 추가하는 단계에 plug-in을 설정하면 된다.
+
+또한 plug-in을 내부적으로 구성하는 프로그램을 goal이라고 한다.
+
+즉, maven프로젝트에는 단계(phase)가 있고, 이러한 단계를 실행하는 것이 plug-in이고
+plug-in안에는 goal로 구성되어 있다.

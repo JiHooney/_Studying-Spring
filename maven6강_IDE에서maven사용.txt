@@ -1,0 +1,14 @@
+이클립스에서는 maven이 포함되어 있다.
+maven플러그인이 포함되어 있지 않다면 마켓플레이스에서 maven 플러그인을 설치할 수 있다.
+
+기존에 있는 maven프로젝트 import하기
+File > Import > Maven > Existing Maven Projects > Next > Browse > maven프로젝트 선택
+(javaprj) pom.xml파일이 있는 디렉터리 > Finish
+
+이클립스에서 App.java를 바로 실행하면 IDE가 알아서 maven 컴파일, 패키징, 실행 단계를
+해준다. 이전에는 사용자가 직접 했어야만 했다.
+
+
+File > New > Maven Project > 
+
+

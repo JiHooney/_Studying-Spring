@@ -1,0 +1,49 @@
+maven 프로젝트는 홈에 항상 pom.xml파일이 있다.
+이 프로젝트를 컴파일하거나 이 프로젝트를 실행할 때는 pom.xml이 있는 디렉터리에서
+명령어를 실행해야 한다.
+
+이제 App.java라는 소스코드를 수정하고 jdk말고 빌드툴인 maven을 이용해서 컴파일을 
+해보자.
+
+pom.xml이 있는 디렉터리에서 
+
+> maven compile
+명령어를 입력한다.
+
+이때 컴파일러의 버전에러가 나온다면 pom.xml에서 컴파일러 버전을 수정해줘야 한다.
+
+컴파일을 담당하는 플러그인의 jdk버전을 변경해준다.
+아래 내용을 <project ~> </project> 태그 안에 추가해준다.
+<properties>
+	<maven.compiler.source>1.8</maven.compiler.source>
+	<maven.compiler.target>1.8</maven.compiler.target>
+</properties>
+
+이번에는 jar파일인 패키징해본다.
+> maven package
+
+이제 해당 jar파일을 실행해보자. jar파일을 알집파일과 동일하다.
+실행은 java명령어로 실행할 수 있다.
+
+> java -cp target\javaprj-1.0-SNAPSHOT.jar com.newlecture.App
+#Hello Maven! 이 출력된다
+
+혹은 아래와 같이 pom.xml을 설정하고 jar파일을 실행할 수 있다.
+<plugin>
+~~
+<configuration>
+	<archive>
+		<manifest>
+			<mainClass>com.newlecture.App</mainClass>
+		</manifest>
+	</archive>
+</configuration>
+</plugin>
+
+>java -jar target\javaprj-1.0-SNAPSHOT.jar
+
+
+만들었던 메이븐 패키지를 삭제하는 명령어는 다음과 같다.
+>maven clean
+다시 패키지한다.
+>maven package
