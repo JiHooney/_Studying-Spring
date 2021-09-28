@@ -1,0 +1,93 @@
+예제코드는  뉴렉처 사이트 공지사항에서 다운가능
+
+이클립스에서 자바프로젝트 만들기 spring
+모듈은 생성안함
+
+프로젝트에 클래스제작
+패키지명 spring.di
+클래스명 Program
+
+
+메인함수안에 아래 내용 작성
+Exam exam = new NewlecExam();
+
+
+이때 Exam은 인터페이스로 생성
+패키지명은 spring.di.entity
+인터페이스 내용 안에는
+
+int total();
+float avg();
+
+
+이제 NewlecExam은 클래스로 만들고 패키지명은 spring.di.entity로 만들고
+구현할 인터페이스를 Exam으로 설정하고 만든다.
+
+내용은
+private int kor;
+private int eng;
+private int math;
+private int com;
+
+@Override
+public int total() {
+	return kor+eng+math+com;
+}
+
+@Override
+public float avg() {
+	return total() / 4.0f;
+}
+
+
+이번에는 메인함수 안에 출력하는 객체를 만든다. 아래 내용 작성
+ExamConsole console = new InlineExamConsole( exam );
+console.print();
+
+ExamConsole이라는 인터페이스 생성, 패키지명은 spring.di.ui
+안에 내용은
+void print();
+
+이제 InlineExamConsole 클래스를 만드는데 ExamConsole인터페이스를 구현하도록 한다.
+내용은
+private Exam exam;
+
+public InlineExamConsole( Exam exam ) {
+	this.exam = exam;
+}
+
+public void print() {
+	System.out.printf( "total is %d, avg is %f\n", exam.total(), exam.avg() );
+}
+
+
+이제 메인함수에서 실행하면 현재 생성자로 데이터를 넘겨주지 않았으므로 0이 나온다.
+이번에는 또 다른 출력객체를 만들어본다.
+메인함수에서
+기존 InlineExamConsole을 주석처리하고
+아래 내용을 적는다.
+ExamConsole console = new GridExamConsole( exam );
+GridExamConsole 클래스를 만든다.
+
+private Exam exam;
+
+public GridExamConsole ( Exam exam ) {
+	this.exam = exam;
+}
+
+public void print() {
+	System.out.println( "ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ" );
+	System.out.println( "total	avg" );
+	System.out.println( "ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ" );
+	System.out.printf( "%3d	%3.2f\n", exam.total(), exam.avg() );
+	System.out.println( "ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ" );
+}
+
+이제 메인함수에서 실행하면 잘 실행이 된다.
+
+
+이때 exam이란 객체를 InlineExamConsole과 GridExamConsole 에 끼워넣고 있다. 
+기존에 InlineExamConsole를 사용하다가 GridExamConsole로 바꾸고 싶을 때 소스코드의 수정없이 바꾸려면
+외부설정을 이용해서 이를 바꿀 수 있다. 따라서 외부 설정을 바꿔주기만 하면 객체를 바꿔서 사용할 수 있다.
+소스코드에서는 이러한 객체를 생성하는 부분을 작성하지 않는다. 
+이러한 설정을 수행해주는 것이 스프링의 DI역할이다.
