@@ -1,0 +1,15 @@
+먼저 xml에서 DI를 하기 위한 설정을 작성해본다.
+
+설정파일 네임스페이스는 다음과 같이 엄청 긴데 한 글자라도 틀리면 안되기 때문에
+이클립스의 플러그인을 통해서 이를 만들 수 있다.
+<beans xmlns="http://www.springframework.org/~~~
+</beans>
+
+-스프링 플러그인 설치하기
+이클립스 마켓플레이스 -> spring 검색 -> 'Spring Tools 3 Add-On for Spring Tools 4 ~' install
+-> Confirm -> 동의 -> Finish -> 설치될 때까지 대기 -> 이클립스 재시작
+
+
+
+패키지 우클릭 -> New -> Other -> Spring -> Spring Bean Configuration File생성 -> 
+Next -> File Name설정 : setting.xml
