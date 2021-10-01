@@ -1,0 +1,10 @@
+ApplicationContext context = 
+	new ClassPathXmlApplicationContext( "spring/di/setting.xml" );
+
+ApplicationContext는 지시서를 넘길 때 위치를 나타내주는 기능이다.
+종류는 
+ClassPathXmlApplicationContext
+FileSystemXmlApplicationContext
+XmlWebApplicationContext
+AnnotationConfigApplicationContext
+
