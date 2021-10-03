@@ -8,3 +8,30 @@ FileSystemXmlApplicationContext
 XmlWebApplicationContext
 AnnotationConfigApplicationContext
 
+
+ApplicationContext context = 
+	new ClassPathXmlApplicationContext("spring/di/setting.xml");
+
+스프링라이브러리 가져오는 방법은 
+메이븐 프로젝트로 바꾼 뒤 스프링프레임워크로 만들면된다.
+
+일반적인 자바 프로젝트를 메이븐 프로젝트로 바꾸는 방법은 
+프로젝트 우클릭 -> Configure -> Convert to Maven Project ->
+Group Id: com.newlecture
+Artifact Id: spring
+Finish -> pom.xml파일 만들어진다. pom.xml에 스프링 라이브러리를 추가한다.
+-> pom.xml에서 밑에 Dependency 클릭 -> Add.
+검색어에 springframework 검색결과 안나오면 메이븐레파지토리에서 가져온다.
+-> springframework 에서 Spring Context 최신버전 복사해서 붙여넣기
+-> <version>과 <build> 사이에 추가
+<dependencies>붙여넣기</dependencies>
+-> 저장하면 이클립스 다운로드
+
+이렇게 스프링 프로젝트를 만들고 위처럼 ApplicationContext 로 지시서를 읽은 뒤
+지시서에 내용처럼 객체를 만들고 그 객체는 IoC컨테이너에 담긴다.
+그리고 컨테이너에서 객체를 꺼낼 수 있다.
+ExamConsole console = (ExamConsole) context.getBean("console");
+혹은 아래와 같이 꺼내서 쓸 수 있다.
+ExamConsole console = context.getBean(ExamConsole.class);
+
+
