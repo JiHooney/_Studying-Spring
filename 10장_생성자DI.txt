@@ -1,0 +1,47 @@
+이번엔 클래스 변수에 값을 입력할 때 생성자DI를 이용해본다.
+
+NewlecExam에서 4개의 필드값을 입력받는 생성자를 만든다.
+
+그리고 DI 지시서인 setting.xml에서 아래와 같이 적는다.
+<bean id="exam" class="spring.di.entity.NewlecExam">
+	<constructor-arg value="10" />
+	<constructor-arg value="10" />
+	<constructor-arg value="10" />
+	<constructor-arg value="10" />
+</bean>
+
+이때 생성자의 순서가 헷갈릴 수도 있으니 식별이 가능하게 한다.
+<bean id="exam" class="spring.di.entity.NewlecExam">
+	<constructor-arg index="0" value="10" />
+	<constructor-arg index="1" value="20" />
+	<constructor-arg index="3" value="30" />
+	<constructor-arg index="2" value="40" />
+</bean>
+
+이때 index는 생성자의 매개변수 값의 순서를 의미한다.
+
+다른 방법으로 명시할 수 있다.
+<bean id="exam" class="spring.di.entity.NewlecExam">
+	<constructor-arg name="kor" value="10" />
+	<constructor-arg name="eng" value="20" />
+	<constructor-arg name="com" value="30" />
+	<constructor-arg name="math" value="40" />
+</bean>
+
+
+또 다른 방법이 있다.
+만약 이름은 같은데 자료형이 다를 경우 
+name="kor" type="float" 
+옵션을 추가할 수 있다.
+
+
+설정파일 처리기를 추가해서 할 수 있다.
+먼저 setting.xml 아래에서 namespace에서 p를 체크하면 된다.
+그러면 setting.xml에 아래와 같은 속성값이 추가된다.
+xmlns:p="http://www.springframework.org/schema/p"
+
+그리고 객체를 만드는 bean에 p라는 속성을 추가하면 이 p는 위에서 정의한p가
+처리하게 된다.
+<bean id="exam" class="spring.di.entity.NewlecExam" p:kor="10" />
+
+ 

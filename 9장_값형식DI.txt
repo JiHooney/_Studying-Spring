@@ -1,0 +1,23 @@
+클래스에서 변수에 어떠한 값을 초기화할 때 스프링DI에서는 아래와 같이 표현한다.
+
+<bean id="exam" class="spring.di.entity.NewlecExam">
+	<property name="kor" value="20"/>
+	<property name="eng" value="50"/>
+	<property name="math" value="80"/>
+</bean>
+
+혹은 아래도 같이 할 수 있다.
+<bean id="exam" class="spring.di.entity.NewlecExam">
+	<property name="kor"> 
+		<value>20</value>
+	</property>
+	<property name="eng"> 
+		<value>50</value>
+	</property>
+	<property name="math"> 
+		<value>80</value>
+	</property>
+</bean>
+
+
+이때 NewlecExam.java에 setter와 getter를 만들어줘야 한다.

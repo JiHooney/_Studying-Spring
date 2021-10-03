@@ -1,0 +1,41 @@
+List<Exam> exams = new ArrayList<>();
+exams.add( new NewlecExam(1, 1, 1, 1) );
+
+for (Exam e : exams) {
+	System.out.println(e);
+}
+
+여기서는 ArrayList를 스프링지시서에서 만들어본다.
+
+ApplicationContext context = 
+	new ClassPathXmlApplicationContext( "spring/di/setting.xml" );
+
+List<Exam> exams = (List<Exam>) context.getBean("exams");
+exams.add( new NewlecExam(1, 1, 1, 1) );
+
+for (Exam e : exams) {
+	System.out.println(e);
+}
+
+
+
+===============지시서
+
+<list></list>안에는 여러가지 bean을 만들 수 있고 위에서 만든 bean이름으로 만들 수 있다.
+<bean id="exams" class="java.util.ArrayList">
+	<constructor-arg>
+		<list>
+			<bean class="spring.di.entity.NewlecExam" p:kor="10" />
+			<ref bean="exam"/>
+		</list>
+	</constructor-arg>
+</bean>
+
+
+만약에 이러한 list를 미리 만들고 참조해서 만드려면 아래 메뉴의 namespace로 가서
+util을 체크해준다. util을 사용하면 list계열의 객체를 만드는 반면 위에서 사용한
+생성자DI list는 객체를 만드는 것이 아니다.
+<util:list id="exams" list-class="java.util.ArrayList">
+	<bean class="spring.di.entity.NewlecExam" p:kor="10" />
+	<ref bean="exam"/>
+</util:list>
