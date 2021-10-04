@@ -1,0 +1,22 @@
+지시서에 객체를 만드는 bean을 없애려면 클래스위에 @Component 어노테이션을 써주면된다.
+또한 지시서에는 <context:component-scan ~>태그를 써줘서 패키지를 스캔하도록 한다.
+그리고 component-scan태그를 사용하면 <context:annotation-config/>태그도 필요없어진다.
+또한 @Component에 이름을 써줄 수 있다.
+@Component("console")
+
+===class
+@Component
+class InlineExamConsole {
+	@Autowired
+	public void setExam(Exam exam) {
+		this.exam=exam;
+	}
+}
+
+===지시서.xml
+<context:component-scan base-package="spring.di.ui" />
+
+
+
+패키지를 두 개 스캔하고 싶으면 아래와 같이 작성한다.
+<context:component-scan base-package="spring.di.ui, spring.di.entity" />

@@ -1,0 +1,27 @@
+만약 @Component 어노테이션으로 객체를 생성했을 때
+필드값들의 초기화는 어떻게 할 것인가?
+
+그때는 @Value라는 어노테이션으로 설정한다.
+
+public class NewlecExam implements Exam {
+	@Value("20")
+	private int kor;
+	@Value("30")
+	private int engs;
+	@Value("40")
+	private int math;
+	@Value("50")
+	private int com;
+}
+
+@Component 어노테이션은 가장큰 범위의 어노테이션이고 좀 더 구체적으로 작성해줘야 한다.
+어노테이션은 다음과 같이 있다.
+
+@Component -	@Controller -	@RequestMapping
+	      -	@Service     -	@GetMapping
+	      -	@Repository-	@...
+
+
+Spring MVC의 구성
+o표시는 어노테이션을 붙인다.
+View - Controller(o) -Model - Service(o) - Repository(DAO)(o) - DB

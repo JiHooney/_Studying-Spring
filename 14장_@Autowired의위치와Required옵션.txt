@@ -1,0 +1,53 @@
+@Autowired 위치는 3군데가 있다.
+
+@Autowired는 필드위, 생성자위, setter위에 위치할 수 있다.
+
+필드는 기본생성자에서 객체를 생성한다.
+생성자 위에 쓰면 오버로딩된 생성자에서 객체 생성한다.
+setter는 오버라이딩된 setter에서 객체를 생성한다.
+
+
+
+@Autowired
+@Qualifier("exam2")
+private Exam exam;
+
+public InlineExamConsole() {
+	System.out.println("constructor");
+}
+
+public InlineExamConsole(Exam exam) {
+	System.out.println("overloaded constructor");
+	this.exam=exam;
+}
+
+@Override
+public void setExam(Exam exma) {
+	System.out.println("setter");	
+}
+
+이상태에서 실행하면 System.out.println("constructor"); 기본생성자가 객체를 만들면서 println을
+실행한다.
+
+만약 기본생성자가 없는 상태에서 필드에서 @Autowired를 사용하면 에러가 난다.
+이럴경우 오버로딩된 생성자도 없으면 객체 생성이 된다.
+
+
+
+만약 오버로딩된 생성자에서 @Autowired를 사용하려면 아래와 같이 적어야 된다.
+이렇게 생성자 매개변수 안에 @Qualifier를 써줘야지 스프링이 어떤 객체를 만들어야하는지
+명확히 알게된다.
+@Autowired
+public InlineExamConsole( @Qualifier("exam2") Exam exam ) {
+	System.out.println("overloaded constructor");
+	this.exam=exam;
+}
+
+
+
+만약 필드위에서 @Autowired를 사용할 때 지시서에 굳이 bean을 생성하는
+코드를 쓰지 않고 싶을 경우에는
+@Autowired( required=false )
+를 사용하면 지시서에 객체를 만드는 bean이 없어도 일단 코드를 생성해준다.
+
+	

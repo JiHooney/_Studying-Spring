@@ -1,0 +1,47 @@
+지시서에서 불필요한 xml태그를 없애고 어노테이션만 사용할 수 있도록 수정한다.
+
+이제 지시서.xml을 .java파일로 바꿔버릴 수 있다.
+
+@Bean이라는 어노테이션의 역할은
+스프링이 가지고 있는 IoC컨테이너는 우리가 프로그램에서 사용할 수 있는 혹은 공유할 수 있는
+객체들을 모아놓고 있는 컨테이너이다. 이러한 컨테이너에 객체를 담으려면 @Bean이라는 
+어노테이션을 써주면 객체는 IoC컨테이너에 담기게 된다.
+
+또한 @Bean을 통해서 만드는 메서드는 (public Exam exam() { )에서 exam()은 
+IoC컨테이너에 담길 객체명이 된다.
+
+@ComponentScan( {"spring.di.ui", "spring.di.entity"} )
+@Configuration
+public class NewlecAppConfig {
+	@Bean
+	public Exam exam() {
+		return new NewlecExam();
+	}
+}
+
+
+자바 파일을 만든다
+spring.di패키지에 NewlecDIConfig를 만든다.
+
+@ComponentScan("spring.di.ui")
+@configuration
+public class NewlecDIConfig {
+
+	@Bean
+	public Exam exam() {
+		return new NewlecExam();
+	}
+}
+
+
+====Program.java에서 context종류를 변경해준다.
+ApplicationContext context = 
+	new AnnotationConfigApplicationContext(NewlecDIConfig.class);
+
+혹은 configuration 파일이 여러 개 있을 경우 context.register를 이용할 수 있다.
+이때는 .refresh() 메서드를 꼭 써줘야 한다.
+
+AnnotationConfigApplicationContext ctx =
+	new AnnotationConfigApplicationContext();
+ctx.register( AppConfig.class, OtherConfig.class );
+ctx.refresh();

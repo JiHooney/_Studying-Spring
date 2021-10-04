@@ -1,0 +1,15 @@
+@Autowired는 지시서의 bean의 이름과는 상관없고 타입을 확인하고 만들어준다.
+
+그리고 지시서에 똑같은 bean인데 변수값이 다른 경우에는 객체가 생성되지 않는다.
+이럴경우 bean의 id를 따로 지정해주면 된다. 또한 @Qualifier를 사용할 수 있다.
+
+@Autowired
+@Qualifier("exam2")
+@Overide
+public void setExam(Exam exam) {
+	this.exam = exam;
+}
+
+==지시서
+<bean id="exam1" class="spring.di.entity.NewlecExam" p:kor=10 p:eng=20 />
+<bean id="exam2" class="spring.di.entity.NewlecExam" p:kor=20 p:eng=40 />

@@ -1,0 +1,19 @@
+지시서에서 객체를 바꾸는 것도 귀찮아서 어노테이션 기법이 만들어졌다.
+
+지시서인 xml에서 <property>태그를 어노테이션 기법으로 없앨 수 있다.
+<bean id="exam" class="spring.di.entity.NewlecExam" p:kor="10" />
+<bean id="console" class="spring.di.ui.lnlineExamConsole">
+	<property name="exam" ref="exam" />
+</bean>
+
+spring.di.entity.NewlecExam.java파일에서
+exam이란 필드를 만들 때 @Autuwired를 써주면된다. 아래와 같다.
+
+@Autowired
+private Exam exam;
+
+
+그리고 지시서에는 어노테이션을 찾으라는 명령을 써줘야한다.
+지시서에서 namespace에서 context를 체크한다.
+그리고 아래와 같이 작성한다.
+<context:annotation-config />
